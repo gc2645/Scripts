@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Get domain name
+_yad="/usr/bin/yad"
+_out="/tmp/whois.output.$$"
+domain=$(${_yad} --title  "Enter domain" \
+	            --entry --text "Enter the domain you would like to see whois info" )
+ 
+if [ $? -eq 0 ]
+then
+  # Display a progress dialog while searching whois database
+  whois $domain  | tee >(${_yad} --width=200 --height=100 \
+  				    --title="whois" --progress \
+			            --pulsate --text="Searching domain info..." \
+                                    --auto-kill --auto-close \
+                                    --percentage=10) >${_out}
+ 
+  # Display back output
+  ${_yad} --width=800 --height=600  \
+	     --title "Whois info for $domain" \
+	     --text-info --filename="${_out}"
+else
+  ${_yad} --error \
+	     --text="No input provided"
+fi

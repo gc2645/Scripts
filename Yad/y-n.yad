@@ -1,0 +1,13 @@
+#!/bin/bash
+
+val=$(yad --center --width=300 --height=100 --title "Alert" --image "dialog-question" --buttons-layout=center --text "Search for Broadcast
+Stations ?" --button=gtk-yes:0 --button=gtk-no:1 )   
+ret=$?
+
+[[ $ret -eq 1 ]] && echo "No clicked" && exit 0
+
+if [[ $ret -eq 0 ]]; then
+    echo "Yes clicked"
+    exit 0
+fi
+

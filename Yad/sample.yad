@@ -1,0 +1,16 @@
+#!/bin/bash
+
+(yad --title="Desktop entry editor" \
+	--text="Simple desktop entry editor" \
+	--form \
+	--field="Type:CB" "Application" \
+	--field="Name" "Name" \
+	--field="Generic name" "Generic name" \
+	--field="Comment" "This is a comment" \
+	--field="Command:FL" "/usr/bin/yad" \
+	--field="Icon" "yad" \
+	--field="In terminal:CHK" FALSE \
+	--field="Startup notify:CHK" TRUE \
+	
+	--button="gtk-ok:0" \
+	--button="gtk-cancel:1")

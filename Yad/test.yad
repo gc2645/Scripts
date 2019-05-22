@@ -1,0 +1,20 @@
+#1/bin/bash
+
+val=$(yad --center --width=300 --height=100 \
+	--title "Application Installer" \
+       	--image "Colorado-Flag.png"--buttons-layout=center --text "Select Application to Install" \
+	--button=Clementine:0 \
+	--button=LibreOffice:1 \
+	--button=Shotwell:2 \
+	--button=Skype:3 \
+	--button=Spotify:4 \
+	--button=VirtualBox:5)
+ret=$?
+
+[[ $ret -eq 1 ]] && echo "No clicked" && exit 0
+
+if [[ $ret -eq 0 ]]; then
+    echo "Yes clicked"
+    exit 0
+fi
+
